@@ -14,13 +14,13 @@ const LocalStrategy = new Strategy({
         const user = await userService.findByEmail(username)
 
         if (!user) {
-            return done(boom.unauthorized('User not found'), false);
+            return done(boom.unauthorized(), false);
         }
 
         const isMatch = await verifyPassword(password, user.password);
 
         if (!isMatch) {
-            return done(boom.unauthorized('User or password not valid'), false);
+            return done(boom.unauthorized(), false);
         }
         delete user.dataValues.password;
         done(null, user)

@@ -23,7 +23,7 @@ class UserService {
   async findOne(id) {
     const user = await models.User.findByPk(id);
     if (!user) {
-      throw boom.notFound('user not found');
+      throw boom.unauthorized();
     }
     return user;
   }
@@ -35,7 +35,7 @@ class UserService {
       }
     });
     if (!user) {
-      throw boom.notFound('user not found');
+      throw boom.unauthorized();
     }
     return user;
   }
